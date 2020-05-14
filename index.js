@@ -1,5 +1,6 @@
 /***** Beginning of Starter Code ****/
 
+
 const playerContainer = document.querySelector(".player-container")
 
 // render one player to the DOM
@@ -32,15 +33,50 @@ PLAYERS.forEach(renderPlayer)
 
 
 /***** Deliverable 1 *****/
-function toggleColor(element) {
-  if (element.style.color === "red") {
-    element.style.color = "black"
-  } else {
-    element.style.color = "red"
-  }
-}
+const header = document.querySelector('h1')
 
+header.addEventListener('mouseover', function toggleColor(element) {
+  if (element.target.style.color === "red") {
+    element.target.style.color = "black"
+  } else {
+    element.target.style.color = "red"
+  }
+})
 
 /***** Deliverable 2 *****/
+// const but = document.querySelector('#button')
+// but.preventDefault()
+
+document.addEventListener('submit', function(e){
+   e.preventDefault()
+  const form = document.querySelector('#new-player-form')
+  // const players = document.querySelector('.player-container')
+  const newPlayer = document.createElement('li')
+
+  const newPlayerNum = form.querySelectorAll('input')[0].value 
+  const newPlayerName = form.querySelectorAll('input')[1].value
+  const newPlayerNickName = form.querySelectorAll('input')[2].value
+  const newPlayerUrl = form.querySelectorAll('input')[3].value
+
+  console.log(newPlayerNum, newPlayerName, newPlayerNickName)
+
+  newPlayer.innerHTML = `<h3>${newPlayerName} (<em>${newPlayerNickName}</em>)</h3>
+  <img src="${newPlayerUrl}" alt="${newPlayerName}">
+  <p class="likes"> 0 likes</p>
+  <button class="like-button">❤️</button>`
+  playerContainer.appendChild(newPlayer)
+})
 
 /***** Deliverable 3 *****/
+
+document.addEventListener('click', function(e){
+  let playerWeLike = e.target.parentNode
+  let likesToadd = playerWeLike.querySelector('.likes')
+  let currentLikes = likesToadd.innerHTML
+  let like = parseInt(currentLikes)
+  let newLike = like + 1 
+  console.log(newLike)
+  // playerWeLike.likesToadd.textHTML = `${like + 1} likes`
+  likesToadd.textContent = newLike
+
+})
